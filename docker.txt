@@ -1,0 +1,12 @@
+//컨테이너와 호스트 통신
+컨테이너내에서 파일에 명명한 host.docker.internal는 호스트의 ip를 인식
+
+//컨테이너간에 통신
+docker container inspect 이름 을 이용해 컨테이너를 조회해 IP확인.
+
+//유연한 멀티컨테이너 네트워킹
+** DB연결시 IP대신 컨테이너명입력
+** 동일한 네트워크 명으로 연결해줘야함
+1. docker network create favorites-net 네트워크 생성
+2. docker run -d --name mongodb --network favorites-net mongo 네트워그명 지정
+3. docker run --name favorites --network favorites-net -d --rm -p 3000:3000 favorites-node
